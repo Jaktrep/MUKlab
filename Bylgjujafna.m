@@ -1,7 +1,6 @@
 function B = Bylgjujafna(L,T,N,M,gamma)
   h = L/N;
   tau = T/M;
-  xj = 0:h:L;
   tk = 0:tau:T;
   f0 = -0.1;
   Q = (N+1)*(M+1);
@@ -24,7 +23,7 @@ function B = Bylgjujafna(L,T,N,M,gamma)
   cvec = A\bvec;
   B = zeros(M+1,N+1);
   for k = 0:M
-    B(k+1,:) = cvec(k*(N+1) + 1:(k+1)*(N+1));
+    B(:,k + 1) = cvec(k*(N+1) + 1:(k+1)*(N+1));
   end
 end
 
