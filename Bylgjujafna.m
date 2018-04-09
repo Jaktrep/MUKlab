@@ -1,4 +1,4 @@
-function [B, A] = Bylgjujafna(L,T,N,M,gamma)
+function B = Bylgjujafna(L,T,N,M,gamma)
   h = L/N;
   tau = T/M;
   tk = 0:tau:T;
