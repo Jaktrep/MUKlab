@@ -1,4 +1,4 @@
-function B = Bylgjujafna(L,T,N,M,gamma)
+function [B, A] = Bylgjujafna(L,T,N,M,gamma)
   h = L/N;
   tau = T/M;
   tk = 0:tau:T;
@@ -14,7 +14,7 @@ function B = Bylgjujafna(L,T,N,M,gamma)
   end
   for j=1:N-1
      i =  (N+1) + j+1;
-     A(i,i-1:i+1) = A(i,i-1:i+1) + [-gamma^2*h^(-2) (2*tau^(-2)+2*gamma^2*h^(-2)) -gamma^2*h^(-2)];
+     A(i,i-1:i+1) = [-gamma^2*h^(-2) (2*tau^(-2)+2*gamma^2*h^(-2)) -gamma^2*h^(-2)];
   end
   bvec = f0*ones(Q,1);
   bvec(N+1:N+1:Q) = 2*sin(6*pi.*tk/T);
@@ -26,4 +26,3 @@ function B = Bylgjujafna(L,T,N,M,gamma)
     B(:,k + 1) = cvec(k*(N+1) + 1:(k+1)*(N+1));
   end
 end
-
