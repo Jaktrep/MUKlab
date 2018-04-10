@@ -6,4 +6,16 @@ h = 1/100;
 V = Varmajafnvaegi(a,b,beta1,beta2,h);
 xi = 0:h:a;
 yj = 0:h:b;
-surf(xi,yj,V)
+
+figure(1)
+surf(xi,yj,V);   
+xlabel('x');
+ylabel('y');
+zlabel('u(x,y)');
+title('Þrívítt graf af fletinum');
+
+figure(2)
+contour(xi,yj,V)    
+xlabel('x');
+ylabel('y');
+title('Jafnhæðarlínur flatarins');
