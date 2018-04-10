@@ -1,6 +1,10 @@
 function V = Varmajafnvaegi(a,b,beta1,beta2,h)
   N = a/h;
   M = b/h;
+  xi = 0:h:a;
+  yj = 0:h:b;
+  g1 = beta1*(cos(2*pi*(yj - 0.5)/b)+1);
+  g2 = beta2*(cos(2*pi*yj/b)+1);
   Q = (N+1)*(M+1);
   d = zeros(Q,1);
   A = zeros(Q,Q);
@@ -26,8 +30,8 @@ function V = Varmajafnvaegi(a,b,beta1,beta2,h)
   for k=1:M*N
     for j = 1:3
       for i = 1:3
-        A(L(k,j),L(k,i)) += A1(j,i);
-        A(S(k,j),S(k,i)) += A2(j,i);
+        A(L(k,j),L(k,i)) = A(L(k,j),L(k,i)) +  A1(j,i);
+        A(S(k,j),S(k,i)) = A(S(k,j),S(k,i)) + A2(j,i);
       end
     end
   end
@@ -37,8 +41,8 @@ function V = Varmajafnvaegi(a,b,beta1,beta2,h)
     A(k*(N+1)+1,k*(N+1)+1) = 1;
     A((k+1)*(N+1),(k+1)*(N+1)) = 1;
   end
-  d(1:N+1:M*(N+1)+1) = beta1*(cos(2*pi*((0:h:1) .- 0.5)/b)+1);
-  d(N+1:N+1:Q) = beta2*(cos(2*pi*(0:h:1)/b)+1);
+  d(1:N+1:M*(N+1)+1) = g1;
+  d(N+1:N+1:Q) = g2;
   A = sparse(A);
   c = A\d;
   V = zeros(M+1,N+1);
