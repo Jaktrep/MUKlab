@@ -1,0 +1,6 @@
+  c = 0.5; %Einhver tala þ.a. 0 < c < 1
+  d = 13; %Einhver oddatala þ.a. cd > 6
+  wf = zeros(1,length(yj));
+  for n=0:100
+      wf = wf + c^n*cos(d^n*pi*yj);
+  end

@@ -1,17 +1,27 @@
-function V = Varmajafnvaegi(a,b,beta1,beta2,h)
+function V = Varmajafnvaegi2(a,b,beta1,beta2,h)
   N = a/h;
   M = b/h;
   xi = 0:h:a;
   yj = 0:h:b;
-  g1 = beta1*(cos(2*pi*(yj - 0.5)/b)+1);
-  g2 = beta2*(cos(2*pi*yj/b)+1);
+  c = 0.5;
+  d = 13;
+  rz = zeros(1,length(yj));
+  wf1 = zeros(1,length(yj));
+  cf = zeros(1,length(yj));
+  for i = 1:length(yj)
+     cf(1,i) = CantorFunction(yj(i));
+  end
+  for n=0:100
+      wf1 = wf1 + c^n*cos(d^n*pi*yj);
+      rz = rz + n.^yj;
+  end
+  g1 = wf1;
+  g2 = 2*cf;
   Q = (N+1)*(M+1);
   d = zeros(Q,1);
   A = zeros(Q,Q);
   L = zeros(M*N,3);
   S = zeros(M*N,3);
-  g1 = beta1*(cos(2*pi*((0:h:1) .- 0.5)/b)+1);
-  g2 = beta2*(cos(2*pi*(0:h:1)/b)+1);
   for j = 1:M
     for i = 1:N
       l = N*(j-1) + i;
@@ -32,8 +42,8 @@ function V = Varmajafnvaegi(a,b,beta1,beta2,h)
   for k=1:M*N
     for j = 1:3
       for i = 1:3
-        A(L(k,j),L(k,i)) = A(L(k,j),L(k,i)) +  A1(j,i);
-        A(S(k,j),S(k,i)) = A(S(k,j),S(k,i)) + A2(j,i);
+        A(L(k,j),L(k,i)) += A1(j,i);
+        A(S(k,j),S(k,i)) += A2(j,i);
       end
     end
   end
