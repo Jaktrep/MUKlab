@@ -1,22 +1,22 @@
-function V = Varmajafnvaegi2(a,b,beta1,beta2,h)
+function V = MatlabEddan(a,b,beta1,beta2,h)
   N = a/h;
   M = b/h;
   xi = 0:h:a;
   yj = 0:h:b;
   c = 0.5;
   d = 13;
-  rz = zeros(1,length(yj));
+  %rz = zeros(1,length(yj));
   wf1 = zeros(1,length(yj));
-  cf = zeros(1,length(yj));
-  for i = 1:length(yj)
-     cf(1,i) = CantorFunction(yj(i));
-  end
+  g2 = 0.5*abs(Gamma((-1) + (-3:0.06:3) + 0.02i));
+  %cf = zeros(1,length(yj));
+  %for i = 1:length(yj)
+  %   cf(1,i) = CantorFunction(yj(i));
+  %end
   for n=0:100
       wf1 = wf1 + c^n*cos(d^n*pi*yj);
-      rz = rz + n.^yj;
   end
-  g1 = wf1;
-  g2 = 2*cf;
+  g1 = 10*wf1;
+  %g2 = 2*cf;
   Q = (N+1)*(M+1);
   d = zeros(Q,1);
   A = zeros(Q,Q);
