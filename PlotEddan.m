@@ -15,7 +15,9 @@ zlabel('u(x,y)');
 title('Þrívítt graf af fletinum');
 
 figure(2)
-contour(xi,yj,V)    
+vaporwave;
+colormap(C);
+contour(xi,yj,V,100)   
 xlabel('x');
 ylabel('y');
 title('Jafnhæðarlínur flatarins');
