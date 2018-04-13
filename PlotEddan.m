@@ -15,9 +15,8 @@ zlabel('u(x,y)');
 title('Þrívítt graf af fletinum');
 
 figure(2)
-vaporwave;
-colormap(C);
-contour(xi,yj,V,100)   
+contour(xi,yj,V,100);
+colorbar
 xlabel('x');
 ylabel('y');
 title('Jafnhæðarlínur flatarins');
@@ -28,5 +27,5 @@ grid off
 ax.XGrid = 'off'
 ax.YGrid = 'off'
 ax.ZGrid = 'off'
-set(gca,'XTick',[], 'YTick', [], 'ZTick', [])
-set(gca,'Visible','off')
+set(gca,'XTick',[], 'YTick', [], 'ZTick', []);
+set(gca,'Visible','off');
